@@ -47,7 +47,8 @@ cc_library(
         ":metrics_reader",
         ":sys_util",
         ":tensor_source",
-        ":types",
+        ":tensor_destination",
+    ":types",
         ":util",
         ":xla_coordinator",
         "//torch_xla/csrc:device",
@@ -387,14 +388,25 @@ cc_library(
 )
 
 cc_library(
-    name = "tensor_source",
-    hdrs = ["tensor_source.h"],
-    deps = [
-        ":debug_macros",
-        "@torch//:headers",
-        "@xla//xla:literal",
-        "@xla//xla:shape_util",
-    ],
+  name = "tensor_source",
+  hdrs = ["tensor_source.h"],
+  deps = [
+      ":debug_macros",
+      "@xla//xla:literal",
+      "@xla//xla:shape_util",
+      "@torch//:headers",
+  ]
+)
+
+cc_library(
+  name = "tensor_destination",
+  hdrs = ["tensor_destination.h"],
+  deps = [
+      ":debug_macros",
+      "@xla//xla:literal",
+      "@xla//xla:shape_util",
+      "@torch//:headers",
+  ]
 )
 
 cc_library(
