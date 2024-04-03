@@ -59,6 +59,10 @@ class PjRtComputationClient : public ComputationClient {
   std::vector<xla::Literal> TransferFromDevice(
       absl::Span<const DataPtr> handles) override;
 
+  void TransferFromServer(
+      absl::Span<const DataPtr> handles,
+      absl::Span<std::shared_ptr<TensorDestination>> tensors) override;
+
   std::uintptr_t UnsafeBufferPointer(const DataPtr handle) override;
 
   std::shared_ptr<xla::PjRtBuffer> GetPjRtBuffer(const DataPtr handle) override;
